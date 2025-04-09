@@ -2,12 +2,16 @@ package com.web.agriventure.controller;
 
 
 
+import com.web.agriventure.DTO.JwtResponse;
+import com.web.agriventure.DTO.LoginRequest;
 import com.web.agriventure.model.Role;
 import com.web.agriventure.model.User;
+import com.web.agriventure.security.JwtUtil;
 import com.web.agriventure.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.Optional;
 
@@ -15,9 +19,11 @@ import java.util.Optional;
 @RequestMapping("/api/auth")
 public class AuthController {
     private final AuthService authService;
+    private final JwtUtil jwtUtil;
 
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, JwtUtil jwtUtil) {
         this.authService = authService;
+        this.jwtUtil = jwtUtil;
     }
 
     @PostMapping("/register")
@@ -31,13 +37,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
-        Optional<User> user = authService.authenticate(email, password);
-        if (user.isPresent()) {
-            return ResponseEntity.ok("Login successful!");
-        } else {
-            return ResponseEntity.status(401).body("Invalid credentials");
-        }
+    public String login(@RequestBody User user) {
+        return authService.verify(user);
     }
+
 }
 
