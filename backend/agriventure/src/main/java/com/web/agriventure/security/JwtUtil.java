@@ -1,8 +1,10 @@
 package com.web.agriventure.security;
 
 import com.web.agriventure.model.User;
+import com.web.agriventure.model.UserPrincipal;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -22,8 +24,8 @@ public class JwtUtil {
     }
 
     public String generateToken(User user) {
-
         Map<String,Object> claims=new HashMap<>();
+
         return Jwts.builder()
                 .claims()
                 .add(claims)
