@@ -34,7 +34,7 @@ public class SecurityConfig {
     JwtFilter jwtFilter;
 
     private CustomUserDetailsService customUserDetailsService;
-
+    UserPrincipal userPrincipal;
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();

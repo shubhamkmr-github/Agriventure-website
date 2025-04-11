@@ -5,6 +5,7 @@ import com.web.agriventure.model.UserPrincipal;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -17,21 +18,24 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
+
+
     private final String SECRET = "mySuperSecretKeyForJWTGeneration1234567890"; // use at least 256-bit key
 
     private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
     }
 
-    public String generateToken(User user) {
+    public String generateToken(Authentication authentication,User user) {
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         Map<String,Object> claims=new HashMap<>();
-
+        claims.put("role",userPrincipal.getAuthorities().iterator().next().getAuthority());
         return Jwts.builder()
                 .claims()
                 .add(claims)
                 .subject(user.getEmail())
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis()+60*60*30))
+                .expiration(new Date(System.currentTimeMillis()+60*60*1000))
                 .and()
                 .signWith(getSigningKey())
                 .compact();
@@ -67,6 +71,9 @@ public class JwtUtil {
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
+    }
+    public String extractRole(String token) {
+        return extractClaim(token, claims -> claims.get("role", String.class));
     }
 }
 
