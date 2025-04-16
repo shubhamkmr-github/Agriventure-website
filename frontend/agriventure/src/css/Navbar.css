@@ -1,224 +1,178 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
-i {
-  margin-right: 10px;
+/* Navbar */
+.navbar {
+  background-color: #ffffff;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/*----------bootstrap-navbar-css------------*/
-.navbar-logo {
-  padding: 15px;
-  margin-right: 10px;
-  color: #fff;
-  font-weight: bold;
-  font-size: 1.4rem;
-  text-decoration: none;
-}
-
-.navbar-mainbg {
-  background-color: #5161ce;
-  padding: 0px;
+.navbar-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
 }
 
-#navbarSupportedContent {
-  overflow: hidden;
-  position: relative;
+.navbar-logo {
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-#navbarSupportedContent ul {
-  padding: 0px;
-  margin: 0px;
+.navbar-logo:hover {
+  color: #3498db;
+}
+
+.nav-menu {
   display: flex;
-}
-
-#navbarSupportedContent ul li a i {
-  margin-right: 10px;
-}
-
-.navbar-nav {
+  align-items: center;
   list-style: none;
-  display: flex;
+  height: 100%;
 }
 
 .nav-item {
-  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .nav-link {
-  color: rgba(255, 255, 255, 0.5);
+  color: #333;
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  font-size: 15px;
-  display: block;
-  padding: 20px 20px;
-  transition-duration: 0.6s;
-  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  padding: 0 1.2rem;
+  height: 100%;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
   position: relative;
 }
 
-.nav-item.active > a {
-  color: #5161ce;
-  background-color: transparent;
-  transition: all 0.7s;
+.nav-link:hover {
+  color: #3498db;
 }
 
-.hori-selector {
-  display: inline-block;
-  position: absolute;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  transition-duration: 0.6s;
-  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  background-color: #fff;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  margin-top: 10px;
+.nav-link.active {
+  color: #3498db;
 }
 
-.hori-selector .right,
-.hori-selector .left {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  background-color: #fff;
-  bottom: 10px;
-  overflow: hidden;
-}
-
-.hori-selector .right {
-  right: -25px;
-}
-
-.hori-selector .left {
-  left: -25px;
-}
-
-.hori-selector .right:before,
-.hori-selector .left:before {
+.nav-link.active::after {
   content: '';
   position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #5161ce;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #3498db;
+  border-radius: 2px 2px 0 0;
 }
 
-.hori-selector .right:before {
-  bottom: 0;
-  right: -25px;
-}
-
-.hori-selector .left:before {
-  bottom: 0;
-  left: -25px;
-}
-
-/* Navbar collapse button */
-.navbar-toggler {
+.logout-btn {
+  background: none;
   border: none;
-  background: transparent;
   cursor: pointer;
-  padding: 15px;
-  outline: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
 }
 
-.text-white {
-  color: white;
+/* Menu Icon */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
 }
 
-/* Show navbar collapse */
-.navbar-collapse.show {
-  display: block !important;
+.menu-icon-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+  transition: all 0.3s ease;
 }
 
-/* Media queries */
-@media(min-width: 992px) {
-  .navbar-expand-custom {
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-  }
-  
-  .navbar-expand-custom .navbar-nav {
-    flex-direction: row;
-  }
-  
-  .navbar-expand-custom .navbar-toggler {
-    display: none;
-  }
-  
-  .navbar-expand-custom .navbar-collapse {
-    display: flex !important;
-    flex-basis: auto;
-  }
-  
-  .ml-auto {
-    margin-left: auto !important;
-  }
+/* Menu Icon Animation */
+.menu-icon-bar.open:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
 }
 
-@media (max-width: 991px) {
-  .navbar-collapse {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 15px;
-    width: 100%;
-    height: 100%;
-    background-color: #5161ce;
-    display: none;
-    z-index: 999;
-  }
-  
-  .navbar-nav {
+.menu-icon-bar.open:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-icon-bar.open:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile */
+@media screen and (max-width: 960px) {
+  .nav-menu {
+    display: flex;
     flex-direction: column;
     width: 100%;
+    position: absolute;
+    top: 70px;
+    left: -100%;
+    opacity: 0;
+    transition: all 0.5s ease;
+    background: white;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
   }
-  
+
+  .nav-menu.active {
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+
+  .nav-item {
+    width: 100%;
+    height: auto;
+  }
+
   .nav-link {
-    padding: 12px 30px;
+    text-align: center;
+    padding: 1.5rem;
+    width: 100%;
+    display: table;
+    border-bottom: 1px solid #f5f5f5;
   }
-  
-  .hori-selector {
-    margin-top: 0px;
-    margin-left: 10px;
-    border-radius: 0;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
+
+  .nav-link.active::after {
+    display: none;
   }
-  
-  .hori-selector .left,
-  .hori-selector .right {
-    right: 10px;
+
+  .nav-link.active {
+    background-color: #f8f9fa;
   }
-  
-  .hori-selector .left {
-    top: -25px;
-    left: auto;
-  }
-  
-  .hori-selector .right {
-    bottom: -25px;
-  }
-  
-  .hori-selector .left:before {
-    left: -25px;
-    top: -25px;
-  }
-  
-  .hori-selector .right:before {
-    bottom: -25px;
-    left: -25px;
+
+  .menu-icon {
+    display: flex;
   }
 }

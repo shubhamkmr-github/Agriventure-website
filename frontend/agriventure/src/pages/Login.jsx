@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import '../css/Login.css';
-
-const Login = () => {
+import { jwtDecode } from 'jwt-decode';
+const Login = ({setIsAuthenticated,setRole}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -19,6 +19,11 @@ const Login = () => {
       
       const token = response.data;
       localStorage.setItem('token', token);
+      const decodedToken = jwtDecode(token);
+      localStorage.setItem('role', decodedToken.role)
+      setRole(decodedToken.role || null);
+
+      setIsAuthenticated(true)
       navigate('/');
     } catch (error) {
       console.error('Login failed:', error);
