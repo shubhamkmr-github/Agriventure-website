@@ -1,0 +1,44 @@
+.add-listing-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #f9f9f9;
+  }
+  
+  .add-listing-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+  
+  .add-listing-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .add-listing-container input,
+  .add-listing-container textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  
+  .add-listing-container button {
+    background-color: #27ae60;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .add-listing-container button:hover {
+    background-color: #219150;
+  }
+  

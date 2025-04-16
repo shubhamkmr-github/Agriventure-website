@@ -1,14 +1,12 @@
 package com.web.agriventure.controller;
 
-
-
-import com.web.agriventure.model.Role;
 import com.web.agriventure.model.User;
 import com.web.agriventure.security.JwtUtil;
 import com.web.agriventure.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {

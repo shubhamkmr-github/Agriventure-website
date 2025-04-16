@@ -1,0 +1,70 @@
+/* src/pages/Login.css */
+
+.auth-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .auth-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333333;
+    font-size: 1.8rem;
+  }
+  
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .auth-form input,
+  .auth-form select {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  .auth-form input:focus,
+  .auth-form select:focus {
+    border-color: #28a745;
+    outline: none;
+  }
+  
+  .auth-form button {
+    padding: 12px;
+    background-color: #28a745;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .auth-form button:hover {
+    background-color: #218838;
+  }
+  
+  .auth-container p {
+    margin-top: 20px;
+    text-align: center;
+    color: #555555;
+  }
+  
+  .auth-container p a {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .auth-container p a:hover {
+    text-decoration: underline;
+  }
+  

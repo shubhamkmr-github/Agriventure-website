@@ -56,7 +56,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/register","/api/auth/login").permitAll() // Public endpoints
+                        .requestMatchers("/api/auth/register","/api/auth/login","/api/listing").permitAll() // Public endpoints
                         .anyRequest().authenticated() // Secure other endpoints
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

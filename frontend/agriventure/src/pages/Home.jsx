@@ -1,12 +1,27 @@
-// src/pages/Home.jsx
 
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import ListingCard from '../components/ListingCard';
+import '../css/Home.css';
 
 const Home = () => {
+  const [listings, setListings] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8989/api/listing')
+      .then(response => setListings(response.data))
+      .catch(error => console.error('Error fetching listings:', error));
+  }, []);
+
   return (
-    <div className="p-6 text-center">
-      <h1 className="text-3xl font-semibold text-green-700">Welcome to Home</h1>
-      <p className="mt-4 text-gray-600">This is the home page of Agriventure.</p>
+    <div className="home-container">
+      <h1 className="home-title">Explore Unique Stays</h1>
+      <div className="listings-grid">
+        {listings.map(listing => (
+          <ListingCard key={listing.id} listing={listing} />
+        ))}
+      </div>
     </div>
   );
 };
